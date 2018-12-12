@@ -1,0 +1,46 @@
+@charset='utf-8'
+.m-right .list{
+
+}
+.m-right .list .tips{
+    text-align:center;
+    line-height:36px;
+}
+table {
+    width: 650px;
+    margin:10px auto;
+    min-height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-collapse: collapse;
+ }
+ table tr,tr th,td{
+    border:1px solid #bbb;
+ }
+ table tr .col1{
+    width:15%;
+ }
+ table tr .col2{
+    width:20%;
+ }
+ table tr .col3{
+    width:65%;
+ }
+ .table .con td.inp input{
+    width:100px;
+    height:24px;
+    margin:3px auto;
+    text-indent:5px;
+    border-radius:3px;
+ }
+ .table .btn td button{
+    width:60px;
+    height:25px;
+    margin:3px 2px;
+    padding:1px 3px;
+    border-radius:2px;
+    border:none;
+    background:#00b0f3;
+    color:#fff;
+    cursor:pointer;
+ }

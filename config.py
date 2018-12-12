@@ -1,0 +1,9 @@
+#coding:utf-8
+PY_MYSQL_CONN_DICT=dict(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='root',
+    db='python',
+    charset='utf8'
+)
