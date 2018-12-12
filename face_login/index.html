@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ 		<style type="text/css">
+ 			*{margin: 0;padding: 0;}
+ 			body{height: 100vh;background: url(/static/images/bg.jpg)no-repeat center;background-size: cover;}
+ 			h1{text-align: center;font-weight: 100;height: 100px;line-height: 200px;color: #fff;}
+ 			.message{color: red;}
+ 			#canvas{display: none;}
+ 			#media{width: 600px;height: 400px;margin: 50px auto 0;position: relative;overflow: hidden;border-radius: 14px;}
+ 			.sm{width: 100%;height: 100%;background: url(/static/images/intro.png)no-repeat;position: absolute;background-size: cover;}
+ 			#btn{width: 260px;height: 46px;margin: 20px auto 0;text-align: center;line-height: 46px;background: #00f1ff;color: #fff;cursor: pointer;border-radius: 40px;}
+ 		</style>	
+    </head>
+ 
+    <body>
+    	<h1>大数据生态组件开发基于百度大脑实时刷脸门禁系统【百度大数据人脸识别落地应用技术】</h1>
+    	<h1 class="message"></h1>
+        <div id="media">
+        	<video id="video" width="600" height="400" ></video>
+			<canvas id="canvas" width="600" height="400"></canvas>
+			<div class="sm"></div>
+        </div>
+        <div id="btn">人工智能刷脸门禁系统</div>
+    </body>
+    <script type="text/javascript" src="/static/js/jquery-3.1.1.min.js" ></script>
+    <script type="text/javascript">
+    
+    
+    $(function(){
+    	
+    	init_getvideo();
+    	
+    	
+    	$("#btn").click(function(){
+    		
+    		
+        	var video = document.getElementById("video");
+    		var context = canvas.getContext("2d"); 	
+    		// 初始化扫一扫
+    		scan();
+    		
+      		/*context.drawImage(img,x,y,width,height);*/
+      		context.drawImage(video,0,0,600,400)
+      		// 获取canvas摄像头中的画面截图成编码为base64的加密的字符串
+      		var imgSrc = document.getElementById('canvas').toDataURL('image/png');
+      		var base64 = imgSrc.split("base64,")[1];
+    		$.ajax({
+    			type:"post",
+    			url:"faceck",
+    			data:{"imgBase64":base64},
+    			success:function(data){
+    			    console.log(data)
+    				data = eval(data);
+    				if(data){
+    					window.location.href="/success";
+    				}else{
+    					$(".message").html("你长得太丑了，换个像arry老师一样帅的男神来！");
+    				}
+        		
+        		}
+    	    });  		
+    		
+    		
+    	});
+
+    	
+    });
+    
+    // 初始化调用系统摄像头
+    function init_getvideo(){
+      	var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);   
+	    //navigator	浏览器内置对象
+	    getUserMedia.call(navigator, {
+	        video: true,   
+	        audio: false   
+	    }, function(localMediaStream) {   
+	        var video = document.getElementById('video'); //获取video标签对象  
+	        video.src = window.URL.createObjectURL(localMediaStream);//将摄像头的流媒体赋值给video标签的src
+	        video.onloadedmetadata = function(e) {
+		        video.play();
+	        };
+	    }, function(e) {
+	        console.log('Reeeejected!', e);
+	    });  	
+    	
+    }
+   
+         	
+      	//图片扫描
+		function scan(){
+			var box = $("#media");
+			$(".sm").css({"bottom":box.height()}).animate({bottom:0},2000,function(){$(this).css({"bottom":box.height()})});
+		}
+    </script>
+ 
+</html>

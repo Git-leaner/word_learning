@@ -1,0 +1,14 @@
+课题：结合百度音乐爬虫，打造一个自己的音乐网站
+搜索，下载，播放
+
+环境：python3
+模块：
+    爬虫:requests
+    网站:tornado
+        cmd 下，pip install tornado
+        You are using pip version 9.0.1, however version 10.0.1 is available.
+        You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+ide:pycharm
+任务：
+1.写一个网站
+web后台服务
